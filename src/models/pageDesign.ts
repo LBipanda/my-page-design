@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 
 const initData = {
   pageConfig: {},
-  widgetconfig: [],
+  widgetList: [],
 }
 
 export default function usePageDesign() {

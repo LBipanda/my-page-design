@@ -1,9 +1,10 @@
-import dropDraftBackground from "@/assets/modulePreview/dropDraftBackground.png";
+import dropDraftBackground from "@/assets/pageDesign/dropDraftBackground.png";
 import classnames from "classnames";
 import React, { useRef, useEffect } from "react";
 import lshmLucencyHead from '@/assets/pageDesign/lucencyHead@2x.png';
 import { dragableType } from '@/pages/page-design/type';
 import { XYCoord, useDrag, useDrop } from 'react-dnd';
+import { useModel } from "@umijs/max";
 
 import styles from "./index.less";
 
@@ -11,10 +12,38 @@ interface Props {
   className?: string;
 }
 
+const DraftModule: React.FC = React.memo(function DraftModule() {
+  return (
+    <div
+      style={{
+        position: 'relative',
+        fontSize: 0,
+      }}
+    >
+      <div
+        style={{
+          color: '#0052d9',
+          fontSize: '12px',
+          lineHeight: '16px',
+          position: 'absolute',
+          top: '50%',
+          width: '100%',
+          marginTop: '-8px',
+          textAlign: 'center',
+        }}
+      >
+        组件放置区域
+      </div>
+      <img style={{ width: '100%' }} src={dropDraftBackground} alt="" />
+    </div>
+  );
+});
+
 /** 整个预览面板 */
 export const DesignCenterPreview: React.FC<Props> = React.memo(
   function DesignCenterPreview({ className }) {
     const dropNode = useRef<HTMLDivElement>(null);
+    const { pageData } = useModel("pageDesign");
 
     // const onCustomDrop = (val, ...rest) => {
   //   console.log('onCustomDrop-------', val, ...rest)
@@ -23,9 +52,9 @@ export const DesignCenterPreview: React.FC<Props> = React.memo(
   const [, drop] = useDrop({
     accept: [dragableType.small, dragableType.big],
     drop(item) {
-      // if (item.draft === true) {
+      if (item.draft === true) {
         console.log('useDrop:drop item------', item)
-      // }
+      }
     },
     hover(item, monitor) {
       const clientOffset = monitor.getClientOffset();
@@ -44,6 +73,13 @@ export const DesignCenterPreview: React.FC<Props> = React.memo(
       //   }
       // }
       console.log('useDrop:hover item------', item, node)
+      item.type = dragableType.big;
+      // 插入到最后
+      // item.index = state.moduleConfig.length;
+      item.index = pageData.widgetList.length;
+
+      /** 标记是草稿 */
+      item.draft = true;
     },
   });
 
