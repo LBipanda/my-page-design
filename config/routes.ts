@@ -52,6 +52,12 @@ export default [
     component: './table-list',
   },
   {
+    name: '页面装修',
+    icon: 'table',
+    path: '/pageDesign',
+    component: './page-design',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
