@@ -8,20 +8,20 @@ import { DesignCenterPreview } from "./components/designCenterPreview";
 import DesignModuleConfig from "./components/designModuleConfig";
 import DesignModuleList from "./components/designModuleList";
 import DesignToolbar from "./components/designToolbar";
+import styles from "./index.less";
 
 const PageDesign: React.FC = () => {
   const { pageData, initPageData } = useModel("pageDesign");
 
-  console.log('--------------', pageData)
   useEffect(() => {
-    initPageData(null)
+    initPageData()
   }, [])
   return (
     <PageContainer>
       {/* 头部工具栏：保存、预览、发布... */}
       <DesignToolbar />
       <DndProvider backend={HTML5Backend}>
-        <div style={{ display: "flex" }}>
+        <div className={styles["page-design-wrap"]}>
           <DesignModuleList />
           <DesignCenterPreview />
           <DesignModuleConfig />

@@ -1,25 +1,24 @@
 import React, { useMemo } from 'react';
 import classnames from "classnames";
 import { Collapse } from 'antd';
-import { BasicWidgetList } from './components/basicWidgetList';
+import WidgetList from './components/WidgetList';
+import { baseWidgetData } from '../../config'
 import styles from './index.less';
 
 /**
  * 装修页左侧组件列表
  */
-const DesignModuleList: React.FC= React.memo(function DesignModuleList() {
-
-
+const DesignModuleList: React.FC= React.memo(() => {
   const items = [
     {
       key: '基础组件',
       label: '基础组件',
-      children: <BasicWidgetList />,
+      children: <WidgetList list={baseWidgetData} />,
     },
     {
       key: '营销组件',
       label: '营销组件',
-      children: <p>{'营销组件'}</p>,
+      children: <p>{'营销组件'}</p>, 
     }
   ];
 

@@ -1,0 +1,42 @@
+.wrap {
+  .option-icon {
+    max-width: 30px;
+    max-height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+
+    // 修正对齐问题，懒得另外想结构了
+    margin-top: -3px;
+  }
+  :global(.tea-form__label) {
+    .title {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .sub-title {
+      color: #222;
+      font-size: 14px;
+      margin-left: 12px;
+    }
+  }
+
+  .margin {
+    display: flex;
+    align-items: center;
+    :global {
+      .tea-form__label {
+        color: #888;
+        padding-top: 15px !important;
+      }
+
+      .tea-form__controls--text {
+        padding-left: 4px !important;
+
+        .tea-form__label {
+          padding-top: 0 !important;
+        }
+      }
+    }
+  }
+}
